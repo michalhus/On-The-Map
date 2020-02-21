@@ -16,20 +16,18 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signUpButton: UITextView!
     
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view, typically from a nib.
-//    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        emailTextField.text = ""
-        passwordTextField.text = ""
+        emailTextField.text = "michal.hus@willowtreeapps.com"
+        passwordTextField.text = "tousB3wgM4!"
     }
 
     @IBAction func authenticateUser(_ sender: Any) {
-        print(emailTextField.text ?? "" )
-        print(passwordTextField.text ?? "")
+        Client.exampleOfAPost(username: emailTextField.text!, password: passwordTextField.text!)
     }
     
 }
