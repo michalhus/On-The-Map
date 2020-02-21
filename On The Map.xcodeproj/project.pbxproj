@@ -12,6 +12,9 @@
 		E3C4AC3723FEE8F200B0089E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C4AC3523FEE8F200B0089E /* Main.storyboard */; };
 		E3C4AC3923FEE8F500B0089E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C4AC3823FEE8F500B0089E /* Assets.xcassets */; };
 		E3C4AC3C23FEE8F500B0089E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C4AC3A23FEE8F500B0089E /* LaunchScreen.storyboard */; };
+		E3C4AC4623FF1E7C00B0089E /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C4AC4523FF1E7C00B0089E /* AuthenticationRequest.swift */; };
+		E3C4AC4B23FF1FEE00B0089E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C4AC4A23FF1FEE00B0089E /* Client.swift */; };
+		E3C4AC4D23FF345800B0089E /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C4AC4C23FF345800B0089E /* AuthenticationResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		E3C4AC3823FEE8F500B0089E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3C4AC3B23FEE8F500B0089E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3C4AC3D23FEE8F500B0089E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3C4AC4523FF1E7C00B0089E /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
+		E3C4AC4A23FF1FEE00B0089E /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		E3C4AC4C23FF345800B0089E /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 			children = (
 				E3C4AC3D23FEE8F500B0089E /* Info.plist */,
 				E3C4AC3123FEE8F200B0089E /* AppDelegate.swift */,
+				E3C4AC4723FF1E8400B0089E /* Model */,
 				E3C4AC4423FEE98000B0089E /* Controller */,
 				E3C4AC4323FEE97600B0089E /* Assests */,
 			);
@@ -78,6 +85,32 @@
 				E3C4AC3323FEE8F200B0089E /* LoginViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		E3C4AC4723FF1E8400B0089E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E3C4AC4923FF1EB800B0089E /* Udacity API Requests */,
+				E3C4AC4823FF1E9E00B0089E /* Data */,
+				E3C4AC4A23FF1FEE00B0089E /* Client.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E3C4AC4823FF1E9E00B0089E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		E3C4AC4923FF1EB800B0089E /* Udacity API Requests */ = {
+			isa = PBXGroup;
+			children = (
+				E3C4AC4523FF1E7C00B0089E /* AuthenticationRequest.swift */,
+				E3C4AC4C23FF345800B0089E /* AuthenticationResponse.swift */,
+			);
+			path = "Udacity API Requests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,7 +184,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3C4AC4623FF1E7C00B0089E /* AuthenticationRequest.swift in Sources */,
 				E3C4AC3423FEE8F200B0089E /* LoginViewController.swift in Sources */,
+				E3C4AC4B23FF1FEE00B0089E /* Client.swift in Sources */,
+				E3C4AC4D23FF345800B0089E /* AuthenticationResponse.swift in Sources */,
 				E3C4AC3223FEE8F200B0089E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
