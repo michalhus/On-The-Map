@@ -9,11 +9,10 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var signUpButton: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +23,27 @@ class LoginViewController: UIViewController {
         emailTextField.text = "michal.hus@willowtreeapps.com"
         passwordTextField.text = "tousB3wgM4!"
     }
-
+    
     @IBAction func authenticateUser(_ sender: Any) {
         Client.authenticationPOST(username: emailTextField.text!, password: passwordTextField.text!, completion: handleRequestSessionResponse(success: error:))
     }
     
+    @IBAction func signupViaSafari(_ sender: Any) {
+        UIApplication.shared.open(Client.Endpoints.redirectSignUp.url, options: [:], completionHandler: nil)
+    }
+    
     func handleRequestSessionResponse(success: Bool, error: Error?){
-        if success {
+        guard let error = error else {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "completeLogin", sender: nil)
             }
+            return
+        }
+        DispatchQueue.main.async {
+            self.showToast(message: error.localizedDescription)
+//             NEED TO TAKE A DEEPER DIVE INTO WHY PRINTING SAME ERROR ALL THE TIME
+//            print(error.localizedDescription)
         }
     }
-    
 }
 
