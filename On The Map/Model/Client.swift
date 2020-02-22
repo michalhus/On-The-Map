@@ -46,28 +46,31 @@ class Client {
         task.resume()
     }
     
-    class func exampleOfAPost(username: String, password: String){
+    class func exampleOfAPost(username: String, password: String, completion: @escaping (Bool, Error?) -> Void){
         // create an instance of the Post struct with your own values
-        let credentials = AuthenticationRequest(udacity: Credentials(username: username, password: password))
+        let body = AuthenticationRequest(udacity: Credentials(username: username, password: password))
         var request = URLRequest(url: Endpoints.session.url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // encoding a JSON body from a string, can also use a Codable struct
-        request.httpBody = try! JSONEncoder().encode(credentials)
+        request.httpBody = try! JSONEncoder().encode(body)
         
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
-            if error != nil { // Handle error…
+        _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else {
+                completion(false, error)
                 return
             }
-            
-            let range =  5..<data!.count
-            let newData = data?.subdata(in: range) /* subset response data! */
-            print(String(data: newData!, encoding: .utf8)!)
-        }
-        task.resume()
+            do {
+                let decoder = JSONDecoder()
+                _ = try decoder.decode(AuthenticationResponse.self, from: data.subdata(in: 5..<data.count))
+                completion(true, nil)
+            } catch {
+                completion(false, error)
+            }
+        }.resume()
+        
     }
     
 }

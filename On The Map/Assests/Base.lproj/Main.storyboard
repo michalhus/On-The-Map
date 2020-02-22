@@ -88,7 +88,7 @@
                         <outlet property="loginButton" destination="E0J-d6-dCI" id="zvy-fK-NBE"/>
                         <outlet property="passwordTextField" destination="uBW-nZ-LJu" id="K0d-Nc-guv"/>
                         <outlet property="signUpButton" destination="jY6-ZT-HHc" id="3lE-Qv-afl"/>
-                        <segue destination="LaN-f3-Q67" kind="presentation" id="jfc-sp-Ilv"/>
+                        <segue destination="LaN-f3-Q67" kind="presentation" identifier="completeLogin" id="jfc-sp-Ilv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
