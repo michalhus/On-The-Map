@@ -45,7 +45,7 @@ class Client {
             let authData = try! decoder.decode(AuthenticationResponse.self, from: data)
             print(authData)
             print(data)
-        }.resume()
+            }.resume()
     }
     
     // LOGIN TASK
@@ -62,28 +62,36 @@ class Client {
         
         _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
-                completion(false, error)
-//                print(error!)
-//                print(error!.localizedDescription)
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
                 return
             }
+            let decoder = JSONDecoder()
             do {
-                let decoder = JSONDecoder()
                 _ = try decoder.decode(AuthenticationResponse.self, from: data.subdata(in: 5..<data.count))
                 completion(true, nil)
             } catch {
-                completion(false, error)
-//                print(error)
-//                print(error.localizedDescription)
+                do{
+                    let errorResponse = try decoder.decode(ErrorResponse.self, from: data.subdata(in: 5..<data.count))
+                    DispatchQueue.main.async {
+                        completion(false, errorResponse)
+                    }
+                }
+                catch {
+                    DispatchQueue.main.async {
+                        completion(false, error)
+                    }
+                }
             }
-        }.resume()
+            }.resume()
     }
     
     // LOGOUT TASK
     class func authenticationDELETE(completion: @escaping (Bool, Error?) -> Void){
         var request = URLRequest(url: Endpoints.session.url)
         request.httpMethod = "DELETE"
-       
+        
         var xsrfCookie: HTTPCookie? = nil
         let sharedCookieStorage = HTTPCookieStorage.shared
         
@@ -98,8 +106,6 @@ class Client {
         let _ = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
                 completion(false, error)
-                print(error!)
-                print(error!.localizedDescription)
                 return
             }
             do {
@@ -108,26 +114,8 @@ class Client {
                 completion(true, nil)
             } catch {
                 completion(false, error)
-                print(error)
-                print(error.localizedDescription)
             }
-
-            
-            
-//            let range = Range(5..<data.count)
-//            let newData = data.subdata(in: range)
-//            print(String(data: newData, encoding: .utf8)!)
-//
-//
-            
             }
-        
-        
-    .resume()
+            .resume()
     }
-    
-
-
-    
-    
 }

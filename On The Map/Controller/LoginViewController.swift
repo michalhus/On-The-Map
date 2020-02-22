@@ -34,16 +34,17 @@ class LoginViewController: UIViewController {
     
     func handleRequestSessionResponse(success: Bool, error: Error?){
         guard let error = error else {
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "completeLogin", sender: nil)
-            }
+            self.performSegue(withIdentifier: "completeLogin", sender: nil)
             return
         }
-        DispatchQueue.main.async {
-            self.showToast(message: error.localizedDescription)
-//             NEED TO TAKE A DEEPER DIVE INTO WHY PRINTING SAME ERROR ALL THE TIME
-//            print(error.localizedDescription)
-        }
+        showLoginFailure(message: error.localizedDescription )
     }
+    
+    func showLoginFailure(message: String) {
+        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        show(alertVC, sender: nil)
+    }
+    
 }
 
