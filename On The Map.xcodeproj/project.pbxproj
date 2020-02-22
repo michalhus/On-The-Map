@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E30B9AE92400D5C60087034D /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30B9AE82400D5C60087034D /* LogoutRequest.swift */; };
+		E30B9AED2400D8350087034D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30B9AEC2400D8350087034D /* UIViewController+Extension.swift */; };
 		E3C4AC3223FEE8F200B0089E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C4AC3123FEE8F200B0089E /* AppDelegate.swift */; };
 		E3C4AC3423FEE8F200B0089E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C4AC3323FEE8F200B0089E /* LoginViewController.swift */; };
 		E3C4AC3723FEE8F200B0089E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C4AC3523FEE8F200B0089E /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E30B9AE82400D5C60087034D /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
+		E30B9AEC2400D8350087034D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		E3C4AC2E23FEE8F200B0089E /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C4AC3123FEE8F200B0089E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3C4AC3323FEE8F200B0089E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +45,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E30B9AEA2400D5D00087034D /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				E3C4AC4523FF1E7C00B0089E /* AuthenticationRequest.swift */,
+				E30B9AE82400D5C60087034D /* LogoutRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		E30B9AEB2400D5EA0087034D /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				E3C4AC4C23FF345800B0089E /* AuthenticationResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
 		E3C4AC2523FEE8F200B0089E = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				E3C4AC3323FEE8F200B0089E /* LoginViewController.swift */,
+				E30B9AEC2400D8350087034D /* UIViewController+Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -107,8 +129,8 @@
 		E3C4AC4923FF1EB800B0089E /* Udacity API Requests */ = {
 			isa = PBXGroup;
 			children = (
-				E3C4AC4523FF1E7C00B0089E /* AuthenticationRequest.swift */,
-				E3C4AC4C23FF345800B0089E /* AuthenticationResponse.swift */,
+				E30B9AEB2400D5EA0087034D /* Response */,
+				E30B9AEA2400D5D00087034D /* Requests */,
 			);
 			path = "Udacity API Requests";
 			sourceTree = "<group>";
@@ -185,8 +207,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3C4AC4623FF1E7C00B0089E /* AuthenticationRequest.swift in Sources */,
+				E30B9AE92400D5C60087034D /* LogoutRequest.swift in Sources */,
 				E3C4AC3423FEE8F200B0089E /* LoginViewController.swift in Sources */,
 				E3C4AC4B23FF1FEE00B0089E /* Client.swift in Sources */,
+				E30B9AED2400D8350087034D /* UIViewController+Extension.swift in Sources */,
 				E3C4AC4D23FF345800B0089E /* AuthenticationResponse.swift in Sources */,
 				E3C4AC3223FEE8F200B0089E /* AppDelegate.swift in Sources */,
 			);

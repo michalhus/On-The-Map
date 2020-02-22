@@ -119,8 +119,12 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="eVx-4V-o91">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Pnz-Ls-eUy"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="eVx-4V-o91">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Pnz-Ls-eUy">
+                            <connections>
+                                <action selector="logout:" destination="6RQ-tw-t77" id="hqq-PW-MaM"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="icon_add" id="awH-wi-M6H"/>
                             <barButtonItem image="icon_refresh" id="5cC-pa-es8"/>
@@ -206,8 +210,12 @@
                         <viewLayoutGuide key="safeArea" id="zRT-51-Ca5"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="sjJ-ax-fCG">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Fci-XV-kxF"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="sjJ-ax-fCG">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Fci-XV-kxF">
+                            <connections>
+                                <action selector="logout:" destination="eti-jQ-REn" id="Gjd-9H-hL6"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="icon_add" id="hub-Vz-xuZ"/>
                             <barButtonItem image="icon_refresh" id="qXs-77-SXP"/>

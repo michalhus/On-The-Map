@@ -34,7 +34,7 @@ class Client {
     
     class func exampleOfAGet(){
         let authAPI = Endpoints.session.url
-        let task = URLSession.shared.dataTask(with: authAPI) { (data, response, error) in
+        _ = URLSession.shared.dataTask(with: authAPI) { (data, response, error) in
             guard let data = data else {
                 return
             }
@@ -42,12 +42,12 @@ class Client {
             let authData = try! decoder.decode(AuthenticationResponse.self, from: data)
             print(authData)
             print(data)
-        }
-        task.resume()
+        }.resume()
     }
     
-    class func exampleOfAPost(username: String, password: String, completion: @escaping (Bool, Error?) -> Void){
-        // create an instance of the Post struct with your own values
+    // LOGIN TASK
+    class func authenticationPOST(username: String, password: String, completion: @escaping (Bool, Error?) -> Void){
+        // create an instance of the AuthenticationRequest struct with your own values
         let body = AuthenticationRequest(udacity: Credentials(username: username, password: password))
         var request = URLRequest(url: Endpoints.session.url)
         request.httpMethod = "POST"
@@ -70,7 +70,53 @@ class Client {
                 completion(false, error)
             }
         }.resume()
-        
     }
+    
+    // LOGOUT TASK
+    class func authenticationDELETE(completion: @escaping (Bool, Error?) -> Void){
+        var request = URLRequest(url: Endpoints.session.url)
+        request.httpMethod = "DELETE"
+       
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let _ = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                completion(false, error)
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                _ = try decoder.decode(LogoutRequest.self, from: data.subdata(in: 5..<data.count))
+                completion(true, nil)
+            } catch {
+                completion(false, error)
+            }
+
+            
+            
+//            let range = Range(5..<data.count)
+//            let newData = data.subdata(in: range)
+//            print(String(data: newData, encoding: .utf8)!)
+//
+//
+            
+            }
+        
+        
+    .resume()
+    }
+    
+
+
+    
     
 }

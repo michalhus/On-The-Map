@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func authenticateUser(_ sender: Any) {
-        Client.exampleOfAPost(username: emailTextField.text!, password: passwordTextField.text!, completion: handleRequestSessionResponse(success: error:))
+        Client.authenticationPOST(username: emailTextField.text!, password: passwordTextField.text!, completion: handleRequestSessionResponse(success: error:))
     }
     
     func handleRequestSessionResponse(success: Bool, error: Error?){
