@@ -15,7 +15,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UITextView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -27,7 +26,15 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func authenticateUser(_ sender: Any) {
-        Client.exampleOfAPost(username: emailTextField.text!, password: passwordTextField.text!)
+        Client.exampleOfAPost(username: emailTextField.text!, password: passwordTextField.text!, completion: handleRequestSessionResponse(success: error:))
+    }
+    
+    func handleRequestSessionResponse(success: Bool, error: Error?){
+        if success {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "completeLogin", sender: nil)
+            }
+        }
     }
     
 }
