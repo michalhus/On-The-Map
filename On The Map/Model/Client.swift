@@ -16,6 +16,7 @@ class Client {
         case session
         case studentLocation
         case users(String)
+        case redirectSignUp
         
         var stringValue: String {
             switch self {
@@ -25,6 +26,8 @@ class Client {
                 return Endpoints.base + "StudentLocation"
             case .users(let id):
                 return Endpoints.base + "users/" + id
+            case .redirectSignUp:
+                return "https://auth.udacity.com/sign-up"
             }
         }
         var url: URL{
@@ -60,6 +63,8 @@ class Client {
         _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 completion(false, error)
+//                print(error!)
+//                print(error!.localizedDescription)
                 return
             }
             do {
@@ -68,6 +73,8 @@ class Client {
                 completion(true, nil)
             } catch {
                 completion(false, error)
+//                print(error)
+//                print(error.localizedDescription)
             }
         }.resume()
     }
@@ -91,6 +98,8 @@ class Client {
         let _ = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
                 completion(false, error)
+                print(error!)
+                print(error!.localizedDescription)
                 return
             }
             do {
@@ -99,6 +108,8 @@ class Client {
                 completion(true, nil)
             } catch {
                 completion(false, error)
+                print(error)
+                print(error.localizedDescription)
             }
 
             

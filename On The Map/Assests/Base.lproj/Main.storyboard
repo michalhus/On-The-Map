@@ -51,15 +51,17 @@
                                     <action selector="authenticateUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VGn-Ou-uNB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUI-Zb-lgU">
+                                <rect key="frame" x="248" y="418" width="64" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signupViaSafari:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mmv-9e-8P2"/>
+                                </connections>
+                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Don't have account?" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e33-ZW-BbC">
                                 <rect key="frame" x="54" y="418" width="186" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" red="0.1120380519" green="0.65582494140000003" blue="0.80397540270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Sign Up" translatesAutoresizingMaskIntoConstraints="NO" id="jY6-ZT-HHc">
-                                <rect key="frame" x="240" y="418" width="81" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.1120380519" green="0.65582494140000003" blue="0.80397540270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -87,7 +89,6 @@
                         <outlet property="emailTextField" destination="CPD-AP-6Qg" id="psd-T8-DCg"/>
                         <outlet property="loginButton" destination="E0J-d6-dCI" id="zvy-fK-NBE"/>
                         <outlet property="passwordTextField" destination="uBW-nZ-LJu" id="K0d-Nc-guv"/>
-                        <outlet property="signUpButton" destination="jY6-ZT-HHc" id="3lE-Qv-afl"/>
                         <segue destination="LaN-f3-Q67" kind="presentation" identifier="completeLogin" id="jfc-sp-Ilv"/>
                     </connections>
                 </viewController>
