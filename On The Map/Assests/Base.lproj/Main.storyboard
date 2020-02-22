@@ -118,11 +118,19 @@
                             <outlet property="delegate" destination="6RQ-tw-t77" id="Pia-X9-eks"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="eVx-4V-o91"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="eVx-4V-o91">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Pnz-Ls-eUy"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="icon_add" id="awH-wi-M6H"/>
+                            <barButtonItem image="icon_refresh" id="5cC-pa-es8"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guC-lS-cjv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="422" y="301"/>
+            <point key="canvasLocation" x="394" y="1015"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9r5-1w-Mw1">
@@ -152,7 +160,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="6RQ-tw-t77" kind="relationship" relationship="rootViewController" id="mgE-Sh-hdX"/>
+                        <segue destination="eti-jQ-REn" kind="relationship" relationship="rootViewController" id="HBO-c4-O2C"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NFi-tF-JZs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -169,7 +177,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="eti-jQ-REn" kind="relationship" relationship="rootViewController" id="Wcu-xq-FGp"/>
+                        <segue destination="6RQ-tw-t77" kind="relationship" relationship="rootViewController" id="Dig-Ty-DA5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RfV-he-83W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,7 +193,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ctr-kA-xA6">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="510"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -197,15 +205,25 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zRT-51-Ca5"/>
                     </view>
-                    <navigationItem key="navigationItem" id="sjJ-ax-fCG"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="sjJ-ax-fCG">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Fci-XV-kxF"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="icon_add" id="hub-Vz-xuZ"/>
+                            <barButtonItem image="icon_refresh" id="qXs-77-SXP"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="brZ-7F-yvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="422" y="1015"/>
+            <point key="canvasLocation" x="394" y="301"/>
         </scene>
     </scenes>
     <resources>
+        <image name="icon_add" width="24" height="24"/>
         <image name="icon_mapview-deselected" width="75" height="50"/>
+        <image name="icon_refresh" width="24" height="24"/>
         <image name="listViewSelected" width="75" height="50"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
