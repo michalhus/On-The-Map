@@ -23,7 +23,7 @@ class Client {
             case .session:
                 return Endpoints.base + "session"
             case .studentLocation:
-                return Endpoints.base + "StudentLocation"
+                return Endpoints.base + "StudentLocation?order=-updatedAt&limit=100"
             case .users(let id):
                 return Endpoints.base + "users/" + id
             case .redirectSignUp:
@@ -36,18 +36,18 @@ class Client {
     }
     
     class func exampleOfAGet(){
-        let authAPI = Endpoints.session.url
+        let authAPI = Endpoints.studentLocation.url
         _ = URLSession.shared.dataTask(with: authAPI) { (data, response, error) in
             guard let data = data else {
                 return
             }
             let decoder = JSONDecoder()
-            let authData = try! decoder.decode(AuthenticationResponse.self, from: data)
-            print(authData)
-            print(data)
+            let studentsLocation = try! decoder.decode(StudentsLocationResponse.self, from: data)
+            print(studentsLocation)
+//            print(String(data: data, encoding: .utf8)!)
             }.resume()
     }
-    
+
     // LOGIN TASK
     class func authenticationPOST(username: String, password: String, completion: @escaping (Bool, Error?) -> Void){
         // create an instance of the AuthenticationRequest struct with your own values
