@@ -44,7 +44,6 @@ class Client {
             let decoder = JSONDecoder()
             let studentsLocationResponse = try! decoder.decode(StudentsLocationResponse.self, from: data)
             DispatchQueue.main.async {
-                print(studentsLocationResponse)
                 completion(studentsLocationResponse, nil)
             }
             }.resume()
