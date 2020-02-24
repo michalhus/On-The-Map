@@ -35,16 +35,18 @@ class Client {
         }
     }
     
-    class func getStudentsLocation(){
+    class func getStudentsLocation(completion: @escaping (StudentsLocationResponse?, Error?) -> Void){
         let studentLocationAPI = Endpoints.studentLocation.url
         _ = URLSession.shared.dataTask(with: studentLocationAPI) { (data, response, error) in
             guard let data = data else {
                 return
             }
             let decoder = JSONDecoder()
-            let studentsLocation = try! decoder.decode(StudentsLocationResponse.self, from: data)
-            print(studentsLocation)
-//            print(String(data: data, encoding: .utf8)!)
+            let studentsLocationResponse = try! decoder.decode(StudentsLocationResponse.self, from: data)
+            DispatchQueue.main.async {
+                print(studentsLocationResponse)
+                completion(studentsLocationResponse, nil)
+            }
             }.resume()
     }
 

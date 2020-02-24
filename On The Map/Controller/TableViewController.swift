@@ -8,18 +8,30 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class StudentsLocationTableViewController: UITableViewController {
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "studentCell", for: indexPath)as! StudentCellViewCell
-     
-        let studentInfo = Client.getStudentsLocation
-
-        
-//        let meme = self.memes[(indexPath as NSIndexPath).row]
-
-        
-        return cell
-    }
+//    let memes:[String] = ["bobby", "tobby", "hobby"]
+    
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "studentCell", for: indexPath)as! StudentCellViewCell
+//     
+////       Client.getStudentsLocation { (jsonPayload, error) in
+//////        print(jsonPayload)
+//////        print("HI")
+//////        let studentInfo = jsonPayload?[(indexPath as NSIndexPath).row]
+////        }
+//        
+//        let meme = memes[(indexPath as NSIndexPath).row]
+//        
+////        cell.studentLink =
+////        cell.studentName = meme[indexPath]
+//        
+//        // Set the text and image
+////        cell.textLabel?.text = combinedMemeText
+////        cell.imageView?.image = meme.memedImage
+////
+//        
+//        return cell
+//    }
     
 }

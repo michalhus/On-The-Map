@@ -16,7 +16,6 @@ class AddLocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Client.getStudentsLocation()
     }
     
 }

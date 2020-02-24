@@ -99,8 +99,8 @@
         <!--Table List View Controller-->
         <scene sceneID="8lH-MY-x3A">
             <objects>
-                <tableViewController id="6RQ-tw-t77" userLabel="Table List View Controller" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VgY-kF-upR" customClass="TableViewController" customModule="On_The_Map" customModuleProvider="target">
+                <tableViewController id="6RQ-tw-t77" userLabel="Table List View Controller" customClass="StudentsLocationTableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VgY-kF-upR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -147,10 +147,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="6RQ-tw-t77" id="OQE-Tr-DDg"/>
-                            <outlet property="delegate" destination="6RQ-tw-t77" id="Pia-X9-eks"/>
-                        </connections>
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="On The Map" id="eVx-4V-o91">
