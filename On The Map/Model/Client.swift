@@ -35,9 +35,9 @@ class Client {
         }
     }
     
-    class func exampleOfAGet(){
-        let authAPI = Endpoints.studentLocation.url
-        _ = URLSession.shared.dataTask(with: authAPI) { (data, response, error) in
+    class func getStudentsLocation(){
+        let studentLocationAPI = Endpoints.studentLocation.url
+        _ = URLSession.shared.dataTask(with: studentLocationAPI) { (data, response, error) in
             guard let data = data else {
                 return
             }
