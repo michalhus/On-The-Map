@@ -152,7 +152,7 @@
                     <navigationItem key="navigationItem" title="On The Map" id="eVx-4V-o91">
                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Pnz-Ls-eUy">
                             <connections>
-                                <action selector="reloadData:" destination="6RQ-tw-t77" id="YmZ-LJ-wrR"/>
+                                <action selector="logout:" destination="6RQ-tw-t77" id="moC-I1-9xh"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
