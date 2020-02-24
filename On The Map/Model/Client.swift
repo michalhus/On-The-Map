@@ -17,6 +17,7 @@ class Client {
         case studentLocation
         case users(String)
         case redirectSignUp
+        case addStudentLocation
         
         var stringValue: String {
             switch self {
@@ -28,6 +29,8 @@ class Client {
                 return Endpoints.base + "users/" + id
             case .redirectSignUp:
                 return "https://auth.udacity.com/sign-up"
+            case .addStudentLocation:
+                return Endpoints.base + "StudentLocation"
             }
         }
         var url: URL{
@@ -49,6 +52,39 @@ class Client {
             }.resume()
     }
 
+    class func addStudentLocation(completion: @escaping (AddStudentLocationPOSTResponse?, Error?) -> Void) {
+        var request = URLRequest(url: Endpoints.addStudentLocation.url)
+        let body = AddStudentLocationPOSTRequest(uniqueKey: "1234", firstName: "John", lastName: "Doe", mapString: "Mountain View, CA", mediaURL: "https://udacity.com", latitude: 37.386052, longitude: -122.083851)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try! JSONEncoder().encode(body)
+
+        let _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+                return
+            }
+            let decoder = JSONDecoder()
+            do {
+                let x = try decoder.decode(AddStudentLocationPOSTResponse.self, from: data.subdata(in: 5..<data.count))
+                print(x)
+                print(String(data: data, encoding: .utf8)!)
+                DispatchQueue.main.async {
+                    completion(x, nil)
+                }
+            }
+            catch {
+                DispatchQueue.main.async {
+                    print(error.localizedDescription)
+                    print(String(data: data, encoding: .utf8)!)
+                    completion(nil, error)
+                }
+            }
+        }.resume()
+    }
+    
     // LOGIN TASK
     class func authenticationPOST(username: String, password: String, completion: @escaping (Bool, Error?) -> Void){
         // create an instance of the AuthenticationRequest struct with your own values
