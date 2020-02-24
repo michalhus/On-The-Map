@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StudentCellViewCell: UITableViewCell {
+class StudentViewCell: UITableViewCell {
     @IBOutlet weak var studentName: UILabel!
     @IBOutlet weak var studentLink: UILabel!
     

@@ -13,8 +13,8 @@
 		E30B9AF12402A8D90087034D /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30B9AF02402A8D90087034D /* AddLocationViewController.swift */; };
 		E30B9AF32402AAC70087034D /* AddLocationCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30B9AF22402AAC70087034D /* AddLocationCompletionViewController.swift */; };
 		E30B9AF724040D580087034D /* StudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30B9AF624040D580087034D /* StudentLocationResponse.swift */; };
-		E30B9AF92404138B0087034D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30B9AF82404138B0087034D /* TableViewController.swift */; };
-		E30B9AFB240427F70087034D /* StudentCellViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30B9AFA240427F70087034D /* StudentCellViewCell.swift */; };
+		E30B9AF92404138B0087034D /* StudentsLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30B9AF82404138B0087034D /* StudentsLocationTableViewController.swift */; };
+		E30B9AFB240427F70087034D /* StudentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30B9AFA240427F70087034D /* StudentViewCell.swift */; };
 		E3C4AC3223FEE8F200B0089E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C4AC3123FEE8F200B0089E /* AppDelegate.swift */; };
 		E3C4AC3423FEE8F200B0089E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C4AC3323FEE8F200B0089E /* LoginViewController.swift */; };
 		E3C4AC3723FEE8F200B0089E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C4AC3523FEE8F200B0089E /* Main.storyboard */; };
@@ -32,8 +32,8 @@
 		E30B9AF02402A8D90087034D /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		E30B9AF22402AAC70087034D /* AddLocationCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationCompletionViewController.swift; sourceTree = "<group>"; };
 		E30B9AF624040D580087034D /* StudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationResponse.swift; sourceTree = "<group>"; };
-		E30B9AF82404138B0087034D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		E30B9AFA240427F70087034D /* StudentCellViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCellViewCell.swift; sourceTree = "<group>"; };
+		E30B9AF82404138B0087034D /* StudentsLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsLocationTableViewController.swift; sourceTree = "<group>"; };
+		E30B9AFA240427F70087034D /* StudentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewCell.swift; sourceTree = "<group>"; };
 		E3C4AC2E23FEE8F200B0089E /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C4AC3123FEE8F200B0089E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3C4AC3323FEE8F200B0089E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -121,8 +121,8 @@
 				E30B9AEC2400D8350087034D /* UIViewController+Extension.swift */,
 				E30B9AF02402A8D90087034D /* AddLocationViewController.swift */,
 				E30B9AF22402AAC70087034D /* AddLocationCompletionViewController.swift */,
-				E30B9AF82404138B0087034D /* TableViewController.swift */,
-				E30B9AFA240427F70087034D /* StudentCellViewCell.swift */,
+				E30B9AF82404138B0087034D /* StudentsLocationTableViewController.swift */,
+				E30B9AFA240427F70087034D /* StudentViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -230,9 +230,9 @@
 				E3C4AC4B23FF1FEE00B0089E /* Client.swift in Sources */,
 				E30B9AED2400D8350087034D /* UIViewController+Extension.swift in Sources */,
 				E30B9AF32402AAC70087034D /* AddLocationCompletionViewController.swift in Sources */,
-				E30B9AFB240427F70087034D /* StudentCellViewCell.swift in Sources */,
+				E30B9AFB240427F70087034D /* StudentViewCell.swift in Sources */,
 				E30B9AF724040D580087034D /* StudentLocationResponse.swift in Sources */,
-				E30B9AF92404138B0087034D /* TableViewController.swift in Sources */,
+				E30B9AF92404138B0087034D /* StudentsLocationTableViewController.swift in Sources */,
 				E3C4AC4D23FF345800B0089E /* AuthenticationResponse.swift in Sources */,
 				E30B9AF12402A8D90087034D /* AddLocationViewController.swift in Sources */,
 				E3C4AC3223FEE8F200B0089E /* AppDelegate.swift in Sources */,

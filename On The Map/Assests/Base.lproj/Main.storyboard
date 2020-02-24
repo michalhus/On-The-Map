@@ -105,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentCell" rowHeight="90" id="nKI-H3-LIQ" customClass="StudentCellViewCell" customModule="On_The_Map" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentCell" rowHeight="90" id="nKI-H3-LIQ" customClass="StudentViewCell" customModule="On_The_Map" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nKI-H3-LIQ" id="fuN-AV-nKj">
@@ -152,11 +152,15 @@
                     <navigationItem key="navigationItem" title="On The Map" id="eVx-4V-o91">
                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Pnz-Ls-eUy">
                             <connections>
-                                <action selector="logout:" destination="6RQ-tw-t77" id="hqq-PW-MaM"/>
+                                <action selector="reloadData:" destination="6RQ-tw-t77" id="YmZ-LJ-wrR"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem image="icon_refresh" id="awH-wi-M6H"/>
+                            <barButtonItem image="icon_refresh" id="awH-wi-M6H">
+                                <connections>
+                                    <action selector="refreshStudentsLocation:" destination="6RQ-tw-t77" id="34B-I8-h5s"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="icon_pin" id="5cC-pa-es8">
                                 <connections>
                                     <segue destination="BNG-ST-ssx" kind="presentation" id="cuG-fn-xP7"/>
