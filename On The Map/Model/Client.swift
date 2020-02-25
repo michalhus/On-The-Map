@@ -10,7 +10,9 @@ import Foundation
 
 class Client {
     
-    static var userID = ""
+    static var userID:String = ""
+    static var firstName:String = ""
+    static var lastName:String = ""
     
     enum Endpoints {
         static let base = "https://onthemap-api.udacity.com/v1/"
@@ -43,7 +45,10 @@ class Client {
     class func getStudentsLocation(completion: @escaping (StudentsLocationResponse?, Error?) -> Void){
         let studentLocationAPI = Endpoints.studentLocation.url
         _ = URLSession.shared.dataTask(with: studentLocationAPI) { (data, response, error) in
-            guard let data = data else {
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
                 return
             }
             let decoder = JSONDecoder()
@@ -63,16 +68,19 @@ class Client {
                 }
                 return
             }
-            
-            let range = 5..<data.count
-            let newData = data.subdata(in: range) /* subset response data! */
-            print(String(data: newData, encoding: .utf8)!)
+            let decoder = JSONDecoder()
+            let userPublicInfo = try! decoder.decode(UserPublicInfo.self, from: data.subdata(in: 5..<data.count))
+            DispatchQueue.main.async {
+                Client.firstName = userPublicInfo.firstName
+                Client.lastName = userPublicInfo.lastName
+                completion(true, nil)
+            }
         }.resume()
     }
     
     class func addStudentLocation(completion: @escaping (AddStudentLocationPOSTResponse?, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.addStudentLocation.url)
-        let body = AddStudentLocationPOSTRequest(uniqueKey: Client.userID, firstName: "MiMouse", lastName: "Snowden", mapString: "Mountain View, CA", mediaURL: "https://google.com", latitude: 37.386052, longitude: -122.083851)
+        let body = AddStudentLocationPOSTRequest(uniqueKey: Client.userID, firstName: Client.firstName, lastName: Client.lastName, mapString: "Mountain View, CA", mediaURL: "https://google.com", latitude: 37.386052, longitude: -122.083851)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(body)

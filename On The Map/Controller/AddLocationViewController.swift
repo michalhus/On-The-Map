@@ -16,7 +16,7 @@ class AddLocationViewController: UIViewController {
     
     
     @IBAction func addLocation(_ sender: Any) {
-        Client.addStudentLocation { (success: AddStudentLocationPOSTResponse?, error:Error?) in
+        Client.getUserPublicInfo { (success, error) in
             print(success)
         }
     }

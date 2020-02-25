@@ -17,3 +17,4 @@ struct UserPublicInfo: Codable {
         case lastName = "last_name"
     }
 }
+
