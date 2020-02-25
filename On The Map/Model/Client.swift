@@ -54,7 +54,7 @@ class Client {
 
     class func addStudentLocation(completion: @escaping (AddStudentLocationPOSTResponse?, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.addStudentLocation.url)
-        let body = AddStudentLocationPOSTRequest(uniqueKey: "1234", firstName: "John", lastName: "Doe", mapString: "Mountain View, CA", mediaURL: "https://udacity.com", latitude: 37.386052, longitude: -122.083851)
+        let body = AddStudentLocationPOSTRequest(uniqueKey: "1234", firstName: "MiMouse", lastName: "Snowden", mapString: "Mountain View, CA", mediaURL: "https://google.com", latitude: 37.386052, longitude: -122.083851)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(body)
@@ -68,11 +68,9 @@ class Client {
             }
             let decoder = JSONDecoder()
             do {
-                let x = try decoder.decode(AddStudentLocationPOSTResponse.self, from: data.subdata(in: 5..<data.count))
-                print(x)
-                print(String(data: data, encoding: .utf8)!)
+                let addStudentLocationResponse = try decoder.decode(AddStudentLocationPOSTResponse.self, from: data)
                 DispatchQueue.main.async {
-                    completion(x, nil)
+                    completion(addStudentLocationResponse, nil)
                 }
             }
             catch {
