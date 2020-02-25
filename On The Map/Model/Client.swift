@@ -10,12 +10,14 @@ import Foundation
 
 class Client {
     
+    static var userID = ""
+    
     enum Endpoints {
         static let base = "https://onthemap-api.udacity.com/v1/"
         
         case session
         case studentLocation
-        case users(String)
+        case userPublicInfo(String)
         case redirectSignUp
         case addStudentLocation
         
@@ -25,7 +27,7 @@ class Client {
                 return Endpoints.base + "session"
             case .studentLocation:
                 return Endpoints.base + "StudentLocation?order=-updatedAt&limit=100"
-            case .users(let id):
+            case .userPublicInfo(let id):
                 return Endpoints.base + "users/" + id
             case .redirectSignUp:
                 return "https://auth.udacity.com/sign-up"
@@ -51,15 +53,31 @@ class Client {
             }
             }.resume()
     }
-
+    
+    class func getUserPublicInfo(completion: @escaping (Bool, Error?) -> Void) {
+        let getStudentPublicDataAPI = Endpoints.userPublicInfo(Client.userID).url
+        _ = URLSession.shared.dataTask(with: getStudentPublicDataAPI) { data, response, error in
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
+                return
+            }
+            
+            let range = 5..<data.count
+            let newData = data.subdata(in: range) /* subset response data! */
+            print(String(data: newData, encoding: .utf8)!)
+        }.resume()
+    }
+    
     class func addStudentLocation(completion: @escaping (AddStudentLocationPOSTResponse?, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.addStudentLocation.url)
-        let body = AddStudentLocationPOSTRequest(uniqueKey: "1234", firstName: "MiMouse", lastName: "Snowden", mapString: "Mountain View, CA", mediaURL: "https://google.com", latitude: 37.386052, longitude: -122.083851)
+        let body = AddStudentLocationPOSTRequest(uniqueKey: Client.userID, firstName: "MiMouse", lastName: "Snowden", mapString: "Mountain View, CA", mediaURL: "https://google.com", latitude: 37.386052, longitude: -122.083851)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(body)
 
-        let _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 DispatchQueue.main.async {
                     completion(nil, error)
@@ -104,7 +122,8 @@ class Client {
             }
             let decoder = JSONDecoder()
             do {
-                _ = try decoder.decode(AuthenticationResponse.self, from: data.subdata(in: 5..<data.count))
+                let authResponse = try decoder.decode(AuthenticationResponse.self, from: data.subdata(in: 5..<data.count))
+                Client.userID = authResponse.account.key
                 completion(true, nil)
             } catch {
                 do{

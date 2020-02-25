@@ -13,6 +13,12 @@ class StudentsLocationTableViewController: UITableViewController {
     var students: [Student] = []
     
     @IBAction func refreshStudentsLocation(_ sender: Any) {
+
+        
+        Client.getUserPublicInfo { (success, error) in
+            print(success)
+        }
+        
         Client.getStudentsLocation { (response, error) in
             guard let response = response, error == nil else {
                 return
