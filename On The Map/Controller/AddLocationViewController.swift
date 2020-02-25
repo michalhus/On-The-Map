@@ -14,4 +14,11 @@ class AddLocationViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    @IBAction func addLocation(_ sender: Any) {
+        Client.getUserPublicInfo { (success, error) in
+            print(success)
+        }
+    }
+    
 }

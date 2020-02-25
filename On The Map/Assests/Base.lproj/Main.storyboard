@@ -152,7 +152,7 @@
                     <navigationItem key="navigationItem" title="On The Map" id="eVx-4V-o91">
                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Pnz-Ls-eUy">
                             <connections>
-                                <action selector="reloadData:" destination="6RQ-tw-t77" id="YmZ-LJ-wrR"/>
+                                <action selector="logout:" destination="6RQ-tw-t77" id="moC-I1-9xh"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -293,18 +293,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Test Locatoin Information Posting View" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Tfg-zZ-u3D">
-                                <rect key="frame" x="67" y="189" width="240" height="128"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OjY-30-RLA">
+                                <rect key="frame" x="54" y="166" width="262" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V90-SN-dUJ">
-                                <rect key="frame" x="128" y="500" width="92" height="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Link" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zsK-EO-rXR">
+                                <rect key="frame" x="54" y="214" width="262" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Find Location"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V90-SN-dUJ">
+                                <rect key="frame" x="54" y="264" width="262" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Find Location">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
+                                    <action selector="addLocation:" destination="eia-cb-YCj" eventType="touchUpInside" id="3BB-NN-WtS"/>
                                     <segue destination="RRC-aT-Qck" kind="show" id="3J8-W4-IG6"/>
                                 </connections>
                             </button>
@@ -322,7 +333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXq-9G-zIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2201" y="633"/>
+            <point key="canvasLocation" x="2200.8000000000002" y="632.83358320839591"/>
         </scene>
         <!--Add Location Completion View Controller-->
         <scene sceneID="Sn4-v6-0QV">
