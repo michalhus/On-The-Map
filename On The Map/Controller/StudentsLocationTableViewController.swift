@@ -12,7 +12,7 @@ class StudentsLocationTableViewController: UITableViewController {
     
     var students: [Student] = []
     
-    @IBAction func refreshStudentsLocation(_ sender: Any) {        
+    @IBAction func refreshStudentsLocation(_ sender: Any) {
         Client.getStudentsLocation { (response, error) in
             guard let response = response, error == nil else {
                 return
@@ -23,12 +23,7 @@ class StudentsLocationTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Client.getStudentsLocation { (response, error) in
-            guard let response = response, error == nil else {
-                return
-            }
-            self.refetchLocations(response: response)
-        }
+        self.tableView.reloadData()
     }
     
     // MARK: - Table view data source

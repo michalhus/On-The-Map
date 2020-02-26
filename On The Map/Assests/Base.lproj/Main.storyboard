@@ -229,7 +229,7 @@
         <!--Map Kit View Controller-->
         <scene sceneID="2Pq-dt-kOy">
             <objects>
-                <viewController id="eti-jQ-REn" userLabel="Map Kit View Controller" sceneMemberID="viewController">
+                <viewController id="eti-jQ-REn" userLabel="Map Kit View Controller" customClass="MapKitViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wBS-qR-MVs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -255,7 +255,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem image="icon_refresh" id="hub-Vz-xuZ"/>
+                            <barButtonItem image="icon_refresh" id="hub-Vz-xuZ">
+                                <connections>
+                                    <action selector="refreshStudentLocation:" destination="eti-jQ-REn" id="gOa-dp-lsY"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="icon_pin" id="qXs-77-SXP">
                                 <connections>
                                     <segue destination="BNG-ST-ssx" kind="presentation" id="ZIF-3S-Q7N"/>
@@ -264,6 +268,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="ctr-kA-xA6" id="tUJ-EJ-cGH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="brZ-7F-yvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -373,6 +380,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cuG-fn-xP7"/>
+        <segue reference="ZIF-3S-Q7N"/>
     </inferredMetricsTieBreakers>
 </document>

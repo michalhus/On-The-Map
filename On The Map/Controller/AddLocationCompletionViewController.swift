@@ -12,7 +12,8 @@ class AddLocationCompletionViewController: UIViewController {
    
     @IBAction func addLocation(_ sender: Any) {
         Client.addStudentLocation { (success: AddStudentLocationPOSTResponse?, error:Error?) in
-//            print(success)
+//WIP
+            //            print(success)
         }
         self.dismiss(animated: true, completion: nil)
     }

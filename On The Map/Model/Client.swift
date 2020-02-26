@@ -42,6 +42,7 @@ class Client {
         }
     }
     
+    // MARK: GET all students' location
     class func getStudentsLocation(completion: @escaping (StudentsLocationResponse?, Error?) -> Void){
         let studentLocationAPI = Endpoints.studentLocation.url
         _ = URLSession.shared.dataTask(with: studentLocationAPI) { (data, response, error) in
@@ -59,6 +60,7 @@ class Client {
             }.resume()
     }
     
+    // MARK: Get to retrive user public info (parsing only first and last name)
     class func getUserPublicInfo(completion: @escaping (Bool, Error?) -> Void) {
         let getStudentPublicDataAPI = Endpoints.userPublicInfo(Client.userID).url
         _ = URLSession.shared.dataTask(with: getStudentPublicDataAPI) { data, response, error in
@@ -78,9 +80,10 @@ class Client {
         }.resume()
     }
     
+    // MARK: POST to add student's location
     class func addStudentLocation(completion: @escaping (AddStudentLocationPOSTResponse?, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.addStudentLocation.url)
-        let body = AddStudentLocationPOSTRequest(uniqueKey: Client.userID, firstName: Client.firstName, lastName: Client.lastName, mapString: "Mountain View, CA", mediaURL: "https://google.com", latitude: 37.386052, longitude: -122.083851)
+        let body = AddStudentLocationPOSTRequest(uniqueKey: Client.userID, firstName: Client.firstName, lastName: Client.lastName, mapString: "VVV Hoover, CANADA", mediaURL: "https://google.com", latitude: 49.2651605, longitude: -123.1397467)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(body)
@@ -109,7 +112,7 @@ class Client {
         }.resume()
     }
     
-    // LOGIN TASK
+    // MARK: LOGIN TASK
     class func authenticationPOST(username: String, password: String, completion: @escaping (Bool, Error?) -> Void){
         // create an instance of the AuthenticationRequest struct with your own values
         let body = AuthenticationRequest(udacity: Credentials(username: username, password: password))
@@ -149,7 +152,7 @@ class Client {
             }.resume()
     }
     
-    // LOGOUT TASK
+    // Mark: LOGOUT TASK
     class func authenticationDELETE(completion: @escaping (Bool, Error?) -> Void){
         var request = URLRequest(url: Endpoints.session.url)
         request.httpMethod = "DELETE"
