@@ -10,6 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    var students:[Student] = []
+
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -31,13 +33,49 @@ class LoginViewController: UIViewController {
     @IBAction func signupViaSafari(_ sender: Any) {
         UIApplication.shared.open(Client.Endpoints.redirectSignUp.url, options: [:], completionHandler: nil)
     }
-    
-    func handleRequestSessionResponse(success: Bool, error: Error?){
-        guard let error = error else {
-            self.performSegue(withIdentifier: "completeLogin", sender: nil)
+  
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "completeLogin" else {
             return
         }
-        showLoginFailure(message: error.localizedDescription )
+        
+        guard let destination = segue.destination as? UITabBarController else {
+            return
+        }
+        
+        guard let viewControllers = destination.viewControllers else {
+            return
+        }
+        
+        let mapNavigationController = viewControllers[0] as! UINavigationController
+        let mapController = mapNavigationController.viewControllers.first! as! MapKitViewController
+        
+        let tableNavigationController = viewControllers[1] as! UINavigationController
+        let tableViewController = tableNavigationController.viewControllers.first! as! StudentsLocationTableViewController
+        
+        mapController.students = students
+        tableViewController.students = students
+        
+    }
+    
+    func handleRequestSessionResponse(success: Bool, error: Error?){
+        guard success, error == nil else {
+            showLoginFailure(message: error!.localizedDescription )
+            return
+        }
+        Client.getStudentsLocation(completion: handleGETStudentsLocationRequest(response: error:))
+   }
+    
+    func handleGETStudentsLocationRequest(response: StudentsLocationResponse?, error: Error?){
+        guard let response = response, error == nil else {
+            showLoginFailure(message: error!.localizedDescription)
+            return
+        }
+        
+        self.students = response.results
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "completeLogin", sender: nil)
+        }
     }
     
     func showLoginFailure(message: String) {
