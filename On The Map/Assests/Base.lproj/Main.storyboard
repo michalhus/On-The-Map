@@ -337,6 +337,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="link" destination="zsK-EO-rXR" id="Mda-5s-yVw"/>
+                        <outlet property="location" destination="OjY-30-RLA" id="fzT-i3-TmV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXq-9G-zIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
