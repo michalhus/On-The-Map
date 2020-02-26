@@ -22,19 +22,18 @@ class AddLocationViewController: UIViewController {
     @IBAction func addLocation(_ sender: Any) {
         Client.getUserPublicInfo { (success, error) in
             guard success, error == nil else {
-                self.errorAlertMessage(title: "Fetching User Data Failed", message: error!.localizedDescription)
+                self.errorAlertMessage(title: "Fetching User Data Failure", message: error!.localizedDescription)
                 return
             }
         }
         
-        guard let location = location.text else {
-            self.errorAlertMessage(title: "Location Failure", message: "Locatin was not provide!")
+        guard let location = location.text, location != ""  else {
+            errorAlertMessage(title: "Location Failure", message: "Please enter a locatin.")
             return
         }
         
-//IGNORE THIS WARRNING FOR NOW, LINK VAR WILL BE PASSED LATER ON TO THE POST API....
-        guard let link = link.text else {
-            self.errorAlertMessage(title: "Link Failure", message: "Link was not provide!")
+        guard let link = link.text, link != "" else {
+            errorAlertMessage(title: "Link Failure", message: "Please enter a link.")
             return
         }
         
@@ -46,70 +45,21 @@ class AddLocationViewController: UIViewController {
     
     }
     
-    func errorAlertMessage(title: String, message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        show(alertVC, sender: nil)
-    }
-    
-    //    func getCoordinate( addressString : String,
-    //                              completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void ) {
-    //        let geocoder = CLGeocoder()
-    //        geocoder.geocodeAddressString(addressString) { (placemarks, error) in
-    //            if error == nil {
-    //                if let placemark = placemarks?[0] {
-    //                    let location = placemark.location!
-    //
-    //                    completionHandler(location.coordinate, nil)
-    //                    return
-    //                }
-    //            }
-    //
-    //            completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
-    //        }
-    //    }
-    
-    
-    
-    
-    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+    func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
 
         guard let placemarks = placemarks, error == nil else {
-            self.errorAlertMessage(title: "", message: error!.localizedDescription)
+            errorAlertMessage(title: "Location Entry Failure", message: "Provided location could not be found.")
             return
         }
         
-        var location: CLLocation?
-        
         if placemarks.count > 0 {
-            location = placemarks.first?.location
+            guard let location = placemarks.first?.location, error == nil else {
+                errorAlertMessage(title: "Failure", message: error!.localizedDescription)
+                return
+            }
+            let coordinate = location.coordinate
+            print(coordinate)
         }
-        
-        
-//        if placemarks = placemarks?[0] {
-//                                let location = placemark.location!
-//                                return
-//  }
-        
-        
-        if let location = location {
-                            let coordinate = location.coordinate
-                            print(coordinate)
-        }
-        
-    
-        
-//        else {
-//
-//                //                location.text =
-//                print("No Matching Location Found")
-//            }
-//        }
-    
-    
-    
-        
-        
-        
     }
+
 }
