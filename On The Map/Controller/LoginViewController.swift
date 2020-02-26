@@ -11,7 +11,8 @@ import UIKit
 class LoginViewController: UIViewController {
     
     var students:[Student] = []
-
+    let loginErrorTitle:String = "Log In Failure"
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -33,7 +34,7 @@ class LoginViewController: UIViewController {
     @IBAction func signupViaSafari(_ sender: Any) {
         UIApplication.shared.open(Client.Endpoints.redirectSignUp.url, options: [:], completionHandler: nil)
     }
-  
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "completeLogin" else {
             return
@@ -60,15 +61,15 @@ class LoginViewController: UIViewController {
     
     func handleRequestSessionResponse(success: Bool, error: Error?){
         guard success, error == nil else {
-            showLoginFailure(message: error!.localizedDescription )
+            errorAlertMessage(title: loginErrorTitle, message: error!.localizedDescription )
             return
         }
         Client.getStudentsLocation(completion: handleGETStudentsLocationRequest(response: error:))
-   }
+    }
     
     func handleGETStudentsLocationRequest(response: StudentsLocationResponse?, error: Error?){
         guard let response = response, error == nil else {
-            showLoginFailure(message: error!.localizedDescription)
+            errorAlertMessage(title: loginErrorTitle, message: error!.localizedDescription)
             return
         }
         
@@ -76,12 +77,6 @@ class LoginViewController: UIViewController {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "completeLogin", sender: nil)
         }
-    }
-    
-    func showLoginFailure(message: String) {
-        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        show(alertVC, sender: nil)
     }
     
 }

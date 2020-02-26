@@ -143,17 +143,17 @@
 			isa = PBXGroup;
 			children = (
 				E3C4AC4923FF1EB800B0089E /* Udacity API Requests */,
-				E3C4AC4823FF1E9E00B0089E /* Data */,
-				E3C4AC4A23FF1FEE00B0089E /* Client.swift */,
+				E3C4AC4823FF1E9E00B0089E /* Client */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		E3C4AC4823FF1E9E00B0089E /* Data */ = {
+		E3C4AC4823FF1E9E00B0089E /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				E3C4AC4A23FF1FEE00B0089E /* Client.swift */,
 			);
-			path = Data;
+			path = Client;
 			sourceTree = "<group>";
 		};
 		E3C4AC4923FF1EB800B0089E /* Udacity API Requests */ = {
