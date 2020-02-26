@@ -113,7 +113,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pin" translatesAutoresizingMaskIntoConstraints="NO" id="Yyr-Ms-gFe">
-                                            <rect key="frame" x="16" y="21" width="49" height="46"/>
+                                            <rect key="frame" x="16" y="21" width="49" height="43"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="studentLink" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nM-h8-f1J">
                                             <rect key="frame" x="73" y="46" width="109" height="18"/>
@@ -129,6 +129,8 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5nM-h8-f1J" secondAttribute="bottom" constant="15" id="5oK-LT-UF5"/>
+                                        <constraint firstItem="Yyr-Ms-gFe" firstAttribute="bottom" secondItem="5nM-h8-f1J" secondAttribute="bottom" id="6xl-Yl-pgw"/>
                                         <constraint firstItem="nvW-FO-wbY" firstAttribute="leading" secondItem="fuN-AV-nKj" secondAttribute="leading" constant="73" id="Ki6-6o-KiE"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nvW-FO-wbY" secondAttribute="trailing" constant="20" symbolic="YES" id="PKV-T8-Xdl"/>
                                         <constraint firstItem="nvW-FO-wbY" firstAttribute="top" secondItem="Yyr-Ms-gFe" secondAttribute="top" id="Y9H-3v-oxD"/>
@@ -138,7 +140,6 @@
                                         <constraint firstItem="5nM-h8-f1J" firstAttribute="top" secondItem="nvW-FO-wbY" secondAttribute="bottom" constant="4" id="oFc-yF-mbE"/>
                                         <constraint firstItem="nvW-FO-wbY" firstAttribute="leading" secondItem="5nM-h8-f1J" secondAttribute="leading" id="tfY-1X-exd"/>
                                         <constraint firstItem="nvW-FO-wbY" firstAttribute="top" secondItem="fuN-AV-nKj" secondAttribute="topMargin" constant="10" id="vRc-gf-G0l"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Yyr-Ms-gFe" secondAttribute="bottom" constant="12" id="xqf-Rj-2FL"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -320,6 +321,7 @@
                                 </state>
                                 <connections>
                                     <action selector="addLocation:" destination="eia-cb-YCj" eventType="touchUpInside" id="3BB-NN-WtS"/>
+                                    <segue destination="RRC-aT-Qck" kind="show" id="cmP-9D-Gbp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -362,7 +364,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9CN-wC-XcR">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qq6-dI-fyM">
                                 <rect key="frame" x="26" y="617" width="323" height="30"/>
@@ -402,6 +404,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZIF-3S-Q7N"/>
+        <segue reference="cuG-fn-xP7"/>
     </inferredMetricsTieBreakers>
 </document>
