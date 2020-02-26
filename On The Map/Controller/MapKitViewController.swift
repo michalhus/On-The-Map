@@ -1,5 +1,5 @@
 //
-//  x.swift
+//  MapKitViewController.swift
 //  On The Map
 //
 //  Created by Michal Hus on 2/25/20.
@@ -18,38 +18,19 @@ class MapKitViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-
-        var annotations = [MKPointAnnotation]()
-        
-        for student in self.students {
-            // Notice that the float values are being used to create CLLocationDegree values.
-            // This is a version of the Double type.
-            let lat = CLLocationDegrees(student.latitude)
-            let long = CLLocationDegrees(student.longitude)
-            
-            // The lat and long are used to create a CLLocationCoordinates2D instance.
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            
-            // Here we create the annotation and set its coordiate, title, and subtitle properties
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotation.title = "\(student.firstName) \(student.lastName)"
-            annotation.subtitle = student.mediaURL
-            
-            // Finally we place the annotation in an array of annotations.
-            annotations.append(annotation)
-        }
-        
-        // When the array is complete, we add the annotations to the map.
-        self.mapView.addAnnotations(annotations)
+        self.pinLocatinDisplay()
     }
-        
-//        self.pinLocatinDisplay()
-//    }
-   
-    // MARK: - MKMapViewDelegate
     
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
+    @IBAction func refreshStudentLocation(_ sender: Any) {
+        Client.getStudentsLocation { (response, error) in
+            guard let response = response, error == nil else {
+                return
+            }
+            self.refetchLocations(response: response)
+        }
+    }
+    
+    // MARK: - MKMapViewDelegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         guard annotation is MKPointAnnotation else { return nil }
@@ -78,29 +59,36 @@ class MapKitViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-//    func pinLocatinDisplay() {
-//        var annotations = [MKPointAnnotation]()
-//
-//        for student in self.students {
-//                // Notice that the float values are being used to create CLLocationDegree values.
-//                // This is a version of the Double type.
-//                let lat = CLLocationDegrees(student.latitude)
-//                let long = CLLocationDegrees(student.longitude)
-//
-//                // The lat and long are used to create a CLLocationCoordinates2D instance.
-//                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-//
-//                // Here we create the annotation and set its coordiate, title, and subtitle properties
-//                let annotation = MKPointAnnotation()
-//                annotation.coordinate = coordinate
-//                annotation.title = "\(student.firstName) \(student.lastName)"
-//                annotation.subtitle = student.mediaURL
-//
-//                // Finally we place the annotation in an array of annotations.
-//                annotations.append(annotation)
-//            }
-//
-//            // When the array is complete, we add the annotations to the map.
-//            self.mapView.addAnnotations(annotations)
-//    }
+    func pinLocatinDisplay() {
+        var annotations = [MKPointAnnotation]()
+
+        for student in self.students {
+                // Notice that the float values are being used to create CLLocationDegree values.
+                // This is a version of the Double type.
+                let lat = CLLocationDegrees(student.latitude)
+                let long = CLLocationDegrees(student.longitude)
+
+                // The lat and long are used to create a CLLocationCoordinates2D instance.
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+
+                // Here we create the annotation and set its coordiate, title, and subtitle properties
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = "\(student.firstName) \(student.lastName)"
+                annotation.subtitle = student.mediaURL
+
+                // Finally we place the annotation in an array of annotations.
+                annotations.append(annotation)
+            }
+
+            // When the array is complete, we add the annotations to the map.
+            self.mapView.addAnnotations(annotations)
+    }
+
+    func refetchLocations(response: StudentsLocationResponse) {
+        DispatchQueue.main.async {
+            self.students = response.results
+            self.pinLocatinDisplay()
+        }
+    }
 }

@@ -255,7 +255,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem image="icon_refresh" id="hub-Vz-xuZ"/>
+                            <barButtonItem image="icon_refresh" id="hub-Vz-xuZ">
+                                <connections>
+                                    <action selector="refreshStudentLocation:" destination="eti-jQ-REn" id="gOa-dp-lsY"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="icon_pin" id="qXs-77-SXP">
                                 <connections>
                                     <segue destination="BNG-ST-ssx" kind="presentation" id="ZIF-3S-Q7N"/>
