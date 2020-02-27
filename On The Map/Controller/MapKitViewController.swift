@@ -21,6 +21,16 @@ class MapKitViewController: UIViewController, MKMapViewDelegate {
         self.pinLocatinDisplay()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        Client.getStudentsLocation { (response, error) in
+            guard let response = response, error == nil else {
+                return
+            }
+            self.refetchLocations(response: response)
+        }
+    }
+    
     @IBAction func refreshStudentLocation(_ sender: Any) {
         Client.getStudentsLocation { (response, error) in
             guard let response = response, error == nil else {

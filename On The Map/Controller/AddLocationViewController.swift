@@ -12,6 +12,8 @@ import CoreLocation
 
 class AddLocationViewController: UIViewController {
     
+    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var link: UITextField!
     
@@ -42,7 +44,20 @@ class AddLocationViewController: UIViewController {
         geocoder.geocodeAddressString(location) { (placemark, error) in
             self.processResponse(withPlacemarks: placemark, error: error)
         }
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "completeAddingLocation" else {
+            return
+        }
+
+        guard let addLocaitonContorller = segue.destination as? AddLocationCompletionViewController else {
+            return
+        }
+        
+        addLocaitonContorller.coordinate = coordinate
+        addLocaitonContorller.mapString = location.text!
+        addLocaitonContorller.link = link.text!
     }
     
     func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
@@ -57,8 +72,8 @@ class AddLocationViewController: UIViewController {
                 errorAlertMessage(title: "Failure", message: error!.localizedDescription)
                 return
             }
-            let coordinate = location.coordinate
-            print(coordinate)
+            coordinate = location.coordinate
+            self.performSegue(withIdentifier: "completeAddingLocation", sender: nil)
         }
     }
 

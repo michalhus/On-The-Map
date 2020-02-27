@@ -81,9 +81,9 @@ class Client {
     }
     
     // MARK: POST to add student's location
-    class func addStudentLocation(completion: @escaping (AddStudentLocationPOSTResponse?, Error?) -> Void) {
+    class func addStudentLocation(mapString: String, mediaURL: String, latitude: Double, longitude: Double, completion: @escaping (Bool, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.addStudentLocation.url)
-        let body = AddStudentLocationPOSTRequest(uniqueKey: Client.userID, firstName: Client.firstName, lastName: Client.lastName, mapString: "VVV Hoover, CANADA", mediaURL: "https://google.com", latitude: 49.2651605, longitude: -123.1397467)
+        let body = AddStudentLocationPOSTRequest(uniqueKey: Client.userID, firstName: Client.firstName, lastName: Client.lastName, mapString: mapString, mediaURL: mediaURL, latitude: latitude, longitude: longitude)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(body)
@@ -91,22 +91,20 @@ class Client {
         _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(false, error)
                 }
                 return
             }
             let decoder = JSONDecoder()
             do {
-                let addStudentLocationResponse = try decoder.decode(AddStudentLocationPOSTResponse.self, from: data)
+                _ = try decoder.decode(AddStudentLocationPOSTResponse.self, from: data)
                 DispatchQueue.main.async {
-                    completion(addStudentLocationResponse, nil)
+                    completion(true, nil)
                 }
             }
             catch {
                 DispatchQueue.main.async {
-                    print(error.localizedDescription)
-                    print(String(data: data, encoding: .utf8)!)
-                    completion(nil, error)
+                    completion(false, error)
                 }
             }
         }.resume()

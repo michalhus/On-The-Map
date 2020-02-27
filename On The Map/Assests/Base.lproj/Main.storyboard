@@ -321,7 +321,6 @@
                                 </state>
                                 <connections>
                                     <action selector="addLocation:" destination="eia-cb-YCj" eventType="touchUpInside" id="3BB-NN-WtS"/>
-                                    <segue destination="RRC-aT-Qck" kind="show" id="cmP-9D-Gbp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -349,11 +348,12 @@
                     <connections>
                         <outlet property="link" destination="zsK-EO-rXR" id="Mda-5s-yVw"/>
                         <outlet property="location" destination="OjY-30-RLA" id="fzT-i3-TmV"/>
+                        <segue destination="RRC-aT-Qck" kind="show" identifier="completeAddingLocation" id="3kj-h4-pf2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXq-9G-zIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2200.8000000000002" y="632.83358320839591"/>
+            <point key="canvasLocation" x="2150" y="633"/>
         </scene>
         <!--Add Location Completion View Controller-->
         <scene sceneID="Sn4-v6-0QV">
