@@ -29,6 +29,7 @@ class AddLocationViewController: UIViewController {
         activityIndicator.style = UIActivityIndicatorView.Style.gray
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         Client.getUserPublicInfo { (success, error) in
             guard success, error == nil else {
@@ -58,7 +59,7 @@ class AddLocationViewController: UIViewController {
         guard segue.identifier == "completeAddingLocation" else {
             return
         }
-
+        
         guard let addLocaitonContorller = segue.destination as? AddLocationCompletionViewController else {
             return
         }
@@ -69,7 +70,7 @@ class AddLocationViewController: UIViewController {
     }
     
     func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
-
+        
         guard let placemarks = placemarks, error == nil else {
             errorAlertMessage(title: "Location Entry Failure", message: "Provided location could not be found.")
             return
@@ -82,6 +83,7 @@ class AddLocationViewController: UIViewController {
             }
             coordinate = location.coordinate
             activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.performSegue(withIdentifier: "completeAddingLocation", sender: nil)
         }
     }
