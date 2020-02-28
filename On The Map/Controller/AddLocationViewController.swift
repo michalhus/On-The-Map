@@ -13,6 +13,7 @@ import CoreLocation
 class AddLocationViewController: UIViewController {
     
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var link: UITextField!
@@ -22,6 +23,13 @@ class AddLocationViewController: UIViewController {
     }
     
     @IBAction func addLocation(_ sender: Any) {
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
         Client.getUserPublicInfo { (success, error) in
             guard success, error == nil else {
                 self.errorAlertMessage(title: "Fetching User Data Failure", message: error!.localizedDescription)
@@ -73,8 +81,8 @@ class AddLocationViewController: UIViewController {
                 return
             }
             coordinate = location.coordinate
+            activityIndicator.stopAnimating()
             self.performSegue(withIdentifier: "completeAddingLocation", sender: nil)
         }
     }
-
 }
