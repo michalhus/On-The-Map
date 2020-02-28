@@ -48,7 +48,6 @@ class Client {
         
         _ = URLSession.shared.dataTask(with: studentLocationAPI) { (data, response, error) in
             func sendError(_ error: String) {
-                print(error)
                 DispatchQueue.main.async {
                     completion(nil, error)
                 }
@@ -121,7 +120,6 @@ class Client {
 
         _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
             func sendError(_ error: String) {
-                print(error)
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
