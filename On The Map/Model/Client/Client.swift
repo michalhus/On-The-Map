@@ -8,10 +8,6 @@
 
 import Foundation
 
-enum ResponseError: Error {
-    case invalidResponse
-}
-
 class Client {
     
     static var userID:String = ""
