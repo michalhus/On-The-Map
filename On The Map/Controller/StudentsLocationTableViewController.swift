@@ -50,7 +50,10 @@ class StudentsLocationTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = students[indexPath.row]
-        let studentURL = URL(string: student.mediaURL)!
+        guard let studentURL = URL(string: student.mediaURL) else {
+            errorAlertMessage(title: "Error", message: "There is something wrong with the link.")
+            return
+        }
         UIApplication.shared.open(studentURL, options: [:], completionHandler: nil)
     }
     

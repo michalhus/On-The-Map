@@ -19,9 +19,9 @@ class AddLocationCompletionViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     @IBAction func addLocation(_ sender: Any) {
-        Client.addStudentLocation(mapString: mapString, mediaURL: link, latitude: coordinate.latitude, longitude: coordinate.longitude) { (success: Bool, error:Error?) in
+        Client.addStudentLocation(mapString: mapString, mediaURL: link, latitude: coordinate.latitude, longitude: coordinate.longitude) { (success: Bool, error:String?) in
             guard success, error == nil else {
-                self.errorAlertMessage(title: "", message: (error?.localizedDescription)!)
+                self.errorAlertMessage(title: "", message: error!)
                 return
             }
             self.dismiss(animated: true, completion: nil)

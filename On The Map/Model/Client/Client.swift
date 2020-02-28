@@ -43,15 +43,46 @@ class Client {
     }
     
     // MARK: GET all students' location
-    class func getStudentsLocation(completion: @escaping (StudentsLocationResponse?, Error?) -> Void){
+    class func getStudentsLocation(completion: @escaping (StudentsLocationResponse?, String?) -> Void){
         let studentLocationAPI = Endpoints.studentLocation.url
+        
         _ = URLSession.shared.dataTask(with: studentLocationAPI) { (data, response, error) in
-            guard let data = data, error == nil else {
+            func sendError(_ error: String) {
+                print(error)
                 DispatchQueue.main.async {
                     completion(nil, error)
                 }
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                sendError(error!.localizedDescription)
                 return
             }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                sendError("Request did not return a valid response.")
+                return
+            }
+            
+            switch (statusCode) {
+            case 403:
+                sendError("Please check your credentials and try again.")
+                return
+            case 200 ..< 299:
+                break
+            default:
+                sendError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
             let decoder = JSONDecoder()
             let studentsLocationResponse = try! decoder.decode(StudentsLocationResponse.self, from: data)
             DispatchQueue.main.async {
@@ -81,7 +112,7 @@ class Client {
     }
     
     // MARK: POST to add student's location
-    class func addStudentLocation(mapString: String, mediaURL: String, latitude: Double, longitude: Double, completion: @escaping (Bool, Error?) -> Void) {
+    class func addStudentLocation(mapString: String, mediaURL: String, latitude: Double, longitude: Double, completion: @escaping (Bool, String?) -> Void) {
         var request = URLRequest(url: Endpoints.addStudentLocation.url)
         let body = AddStudentLocationPOSTRequest(uniqueKey: Client.userID, firstName: Client.firstName, lastName: Client.lastName, mapString: mapString, mediaURL: mediaURL, latitude: latitude, longitude: longitude)
         request.httpMethod = "POST"
@@ -89,12 +120,42 @@ class Client {
         request.httpBody = try! JSONEncoder().encode(body)
 
         _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data else {
+            func sendError(_ error: String) {
+                print(error)
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                sendError(error!.localizedDescription)
                 return
             }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                sendError("Request did not return a valid response.")
+                return
+            }
+            
+            switch (statusCode) {
+            case 403:
+                sendError("Please check your credentials and try again.")
+                return
+            case 200 ..< 299:
+                break
+            default:
+                sendError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
             let decoder = JSONDecoder()
             do {
                 _ = try decoder.decode(AddStudentLocationPOSTResponse.self, from: data)
@@ -104,14 +165,14 @@ class Client {
             }
             catch {
                 DispatchQueue.main.async {
-                    completion(false, error)
+                    completion(false, error.localizedDescription)
                 }
             }
         }.resume()
     }
     
     // MARK: LOGIN TASK
-    class func authenticationPOST(username: String, password: String, completion: @escaping (Bool, Error?) -> Void){
+    class func authenticationPOST(username: String, password: String, completion: @escaping (Bool, String?) -> Void){
         // create an instance of the AuthenticationRequest struct with your own values
         let body = AuthenticationRequest(udacity: Credentials(username: username, password: password))
         var request = URLRequest(url: Endpoints.session.url)
@@ -123,12 +184,43 @@ class Client {
         request.httpBody = try! JSONEncoder().encode(body)
         
         _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data else {
+            
+            func sendError(_ error: String) {
+                print(error)
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                sendError(error!.localizedDescription)
                 return
             }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                sendError("Request did not return a valid response.")
+                return
+            }
+            
+            switch (statusCode) {
+            case 403:
+                sendError("Please check your credentials and try again.")
+                return
+            case 200 ..< 299:
+                break
+            default:
+                sendError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
             let decoder = JSONDecoder()
             do {
                 let authResponse = try decoder.decode(AuthenticationResponse.self, from: data.subdata(in: 5..<data.count))
@@ -138,12 +230,12 @@ class Client {
                 do{
                     let errorResponse = try decoder.decode(ErrorResponse.self, from: data.subdata(in: 5..<data.count))
                     DispatchQueue.main.async {
-                        completion(false, errorResponse)
+                        completion(false, errorResponse.localizedDescription)
                     }
                 }
                 catch {
                     DispatchQueue.main.async {
-                        completion(false, error)
+                        completion(false, error.localizedDescription)
                     }
                 }
             }

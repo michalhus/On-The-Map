@@ -59,17 +59,17 @@ class LoginViewController: UIViewController {
         
     }
     
-    func handleRequestSessionResponse(success: Bool, error: Error?){
+    func handleRequestSessionResponse(success: Bool, error: String?){
         guard success, error == nil else {
-            errorAlertMessage(title: loginErrorTitle, message: error!.localizedDescription )
+            errorAlertMessage(title: loginErrorTitle, message: error!)
             return
         }
         Client.getStudentsLocation(completion: handleGETStudentsLocationRequest(response: error:))
     }
     
-    func handleGETStudentsLocationRequest(response: StudentsLocationResponse?, error: Error?){
+    func handleGETStudentsLocationRequest(response: StudentsLocationResponse?, error: String?){
         guard let response = response, error == nil else {
-            errorAlertMessage(title: loginErrorTitle, message: error!.localizedDescription)
+            errorAlertMessage(title: loginErrorTitle, message: error!)
             return
         }
         
